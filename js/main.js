@@ -13,21 +13,68 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
+function createRandomIdFromRangeGenerator (min, max) {
+  const previousValues = [];
+
+  return function () {
+    let currentValue = getRandomInteger(min, max);
+    while (previousValues.includes(currentValue)) {
+      currentValue = getRandomInteger(min, max);
+    }
+    previousValues.push(currentValue);
+    return currentValue;
+  };
+}
+
+
+function creatPhotoId () {
+  let photoId = 0;
+
+  return function () {
+    photoId += 1;
+    return photoId;
+  };
+}
+const variableId = creatPhotoId();
+
+
+function creatUrlId () {
+  let urlId = 0;
+
+  return function () {
+    urlId += 1;
+    return urlId;
+  };
+}
+const variableUrlId = creatUrlId();
+
+
+function creatIndexDescription () {
+  let description = 0;
+
+  return function () {
+    description += 1;
+    return description;
+  };
+}
+const variablelDescriptionIndex = creatIndexDescription();
+
+
 const createObject = () => {
+
   const randomAvatar = getRandomInteger(1, 6);
-  const randomId = getRandomInteger(1, 25);
   const randomLike = getRandomInteger(15, 200);
-  const randomIdComments = getRandomInteger(1, 1000);
+  const generatePhotoId = createRandomIdFromRangeGenerator(1, 1000);
   const randomName = getRandomInteger(0, setNames.length - 1);
   const randomMessage = getRandomInteger(0, listMessages.length - 1);
 
   return {
-    id: randomId,
-    url: `photos/${randomId}.jpg`,
-    description: descriptionPhotos[randomId-1],
+    id: variableId(),
+    url: `photos/${variableUrlId()}.jpg`,
+    description: descriptionPhotos[variablelDescriptionIndex() - 1],
     likes: randomLike,
     comments: {
-      idComments: randomIdComments,
+      idComments: generatePhotoId(),
       avatar: `img/avatar-${randomAvatar}.svg`,
       message: listMessages[randomMessage],
       name: setNames[randomName],
