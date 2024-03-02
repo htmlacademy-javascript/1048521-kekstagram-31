@@ -27,37 +27,19 @@ function createRandomIdFromRangeGenerator (min, max) {
 }
 
 
-function creatPhotoId () {
-  let photoId = 0;
+function creatId () {
+  return function() {
+    let id = 0;
 
-  return function () {
-    photoId += 1;
-    return photoId;
+    return function () {
+      id += 1;
+      return id;
+    };
   };
 }
-const variableId = creatPhotoId();
-
-
-function creatUrlId () {
-  let urlId = 0;
-
-  return function () {
-    urlId += 1;
-    return urlId;
-  };
-}
-const variableUrlId = creatUrlId();
-
-
-function creatIndexDescription () {
-  let description = 0;
-
-  return function () {
-    description += 1;
-    return description;
-  };
-}
-const variablelDescriptionIndex = creatIndexDescription();
+const variableId = creatId()();
+const variableUrlId = creatId()();
+const variableDescriptionId = creatId()();
 
 
 const createObject = () => {
@@ -71,7 +53,7 @@ const createObject = () => {
   return {
     id: variableId(),
     url: `photos/${variableUrlId()}.jpg`,
-    description: descriptionPhotos[variablelDescriptionIndex() - 1],
+    description: descriptionPhotos[variableDescriptionId() - 1],
     likes: randomLike,
     comments: {
       idComments: generatePhotoId(),
@@ -82,6 +64,4 @@ const createObject = () => {
   };
 };
 
-const arrayOfObjects = Array.from({length: 25}, createObject);
-
-console.log(arrayOfObjects);
+Array.from({length: 25}, createObject);
