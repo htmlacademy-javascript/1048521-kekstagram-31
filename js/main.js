@@ -1,3 +1,1 @@
-import {arrayObjectsWithPhotos} from './data.js';
-
-console.log(arrayObjectsWithPhotos);
+// import {arrayObjectsWithPhotos} from './data.js';
