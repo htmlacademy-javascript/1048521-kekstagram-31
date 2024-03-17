@@ -1,3 +1,4 @@
+
 // Функция для проверки длины строки
 
 function checkLengthString(str, maxLength) {
