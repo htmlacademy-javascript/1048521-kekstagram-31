@@ -40,3 +40,5 @@ findNumber('ECMAScript 2022');
 findNumber('1 кефир, 0.5 батона');
 findNumber('агент 007');
 findNumber('а я томат');
+
+
