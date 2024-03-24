@@ -30,8 +30,6 @@ const showingLargePhoto = function(evt) {
   commentsCount.textContent = comments.textContent;
   socialCaption.textContent = clickElement.alt;
 
-  socialCommentCount.classList.add('hidden');
-  commentsLoader.classList.add('hidden');
   document.querySelector('body').classList.add('modal-open');
 
 
