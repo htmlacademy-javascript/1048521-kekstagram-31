@@ -13,6 +13,7 @@ arrayObjectsWithPhotos.forEach((element) => {
   const photoLikes = cloneTemplate.querySelector('.picture__likes');
   const photoComments = cloneTemplate.querySelector('.picture__comments');
 
+  photoUser.id = element.id;
   photoUser.src = element.url;
   photoUser.alt = element.description;
   photoLikes.textContent = element.likes;
