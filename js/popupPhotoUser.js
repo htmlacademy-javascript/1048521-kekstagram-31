@@ -17,8 +17,7 @@ arrayObjectsWithPhotos.forEach((element) => {
   photoUser.src = element.url;
   photoUser.alt = element.description;
   photoLikes.textContent = element.likes;
-  photoComments.textContent = element.comments.idComments;
-
+  photoComments.textContent = element.comments.length;
   similarListFragment.appendChild(cloneTemplate);
 });
 

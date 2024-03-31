@@ -42,51 +42,6 @@ findNumber('агент 007');
 findNumber('а я томат');
 
 
-
-
-// Функция для проверки длины строки
-
-function checkLengthString(str, maxLength) {
-  return str.length <= maxLength;
-}
-checkLengthString('проверяемая строка', 18);
-checkLengthString('проверяемая строка', 135);
-checkLengthString('проверяемая строка', 10);
-
-
-// Функция для проверки, является ли строка палиндромом
-
-function isStringPalindrome(str) {
-  const invertedStr = str.split('').reverse().join('').toLowerCase().replaceAll(' ', '');
-  return str.toLowerCase().replaceAll(' ', '') === invertedStr;
-}
-isStringPalindrome('Лёша на полке клопа нашёл ');
-isStringPalindrome('топот');
-isStringPalindrome('ДовОд');
-isStringPalindrome('Кекс');
-
-
-// доп задание
-
-function findNumber(str) {
-  let string = '';
-
-  for(let i = 0; i <= str.length - 1; i++) {
-    const pars = Number.isNaN(parseInt(str[i], 10));
-    if(pars === false) {
-      string += str[i];
-    }
-  }
-  return string;
-}
-
-findNumber('2023 год');
-findNumber('ECMAScript 2022');
-findNumber('1 кефир, 0.5 батона');
-findNumber('агент 007');
-findNumber('а я томат');
-
-
 // Доьашнее задание "Функции возвращаются"
 /*
 Напишите функцию, которая принимает время начала и конца рабочего дня, а также время старта и продолжительность встречи в минутах и возвращает true, если встреча не выходит за рамки рабочего дня, и false, если выходит.
@@ -139,5 +94,3 @@ calculateWorkingDay('8:0', '10:0', '8:0', 120); // true
 calculateWorkingDay('08:00', '14:30', '14:00', 90); // false
 calculateWorkingDay('14:00', '17:30', '08:0', 90); // false
 calculateWorkingDay('8:00', '17:30', '08:00', 900); // false
-
-
