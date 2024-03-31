@@ -13,24 +13,24 @@ const SET_NAMES = ['Саша', 'Леша', 'Даша', 'Наташа', 'Ален
 const DESCRIPTION_PHOTOS = ['Пляж у озера', 'Указатель', 'Райский уголок', 'Фотограф', 'Веселое рагу', 'Электро ночная фурия', 'Перекус', 'Смородиновый морс', 'Самолет над пляжем', 'Необчная обувница', 'Песчаная дорожка к морю', 'Белая ауди', 'Рыба с овощами', 'Кото-ролл', 'Домашние бутсы', 'Горы с высоты птичьего полета', 'Концерт', 'Раритетная машина', 'Светящиеся тапочки', 'Пальмы в асфальте', 'Куриный салат', 'Закат на море', 'Краб', 'Концерт2', 'прогулка с бегемотом'];
 
 const createObject = (_, index) => {
-
-  const randomAvatar = getRandomInteger(MIN_NUMBER_AVATARS, MAX_NUMBER_AVATARS);
   const randomLike = getRandomInteger(MIN_NUMBER_LIKES, MAX_NUMBER_LIKES);
   const generatePhotoId = createRandomIdFromRangeGenerator(1, 1000);
-  const randomName = getRandomInteger(0, SET_NAMES.length - 1);
-  const randomMessage = getRandomInteger(0, LIST_MESSAGES.length - 1);
+  const numberComments = getRandomInteger(0, 30);
 
   return {
     id: index + 1,
     url: `photos/${index + 1}.jpg`,
     description: DESCRIPTION_PHOTOS[index],
     likes: randomLike,
-    comments: {
-      idComments: generatePhotoId(),
-      avatar: `img/avatar-${randomAvatar}.svg`,
-      message: LIST_MESSAGES[randomMessage],
-      name: SET_NAMES[randomName],
-    },
+    comments: Array.from({length: numberComments}, () => {
+      const commentUser = {
+        idComments: generatePhotoId(),
+        avatar: `img/avatar-${getRandomInteger(MIN_NUMBER_AVATARS, MAX_NUMBER_AVATARS)}.svg`,
+        message: LIST_MESSAGES[getRandomInteger(0, LIST_MESSAGES.length - 1)],
+        name: SET_NAMES[getRandomInteger(0, SET_NAMES.length - 1)],
+      };
+      return commentUser;
+    })
   };
 };
 
