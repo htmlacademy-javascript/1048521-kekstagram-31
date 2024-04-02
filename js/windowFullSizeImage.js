@@ -94,5 +94,6 @@ document.addEventListener('keydown', (evt) => {
     evt.preventDefault();
     bigPicture.classList.add('hidden');
     socialComments.innerHTML = '';
+    document.querySelector('body').classList.remove('modal-open');
   }
 });
