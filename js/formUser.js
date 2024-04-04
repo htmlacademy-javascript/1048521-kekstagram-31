@@ -28,9 +28,9 @@ document.addEventListener('keydown', (evt) => {
 const openPhotoEditForm = function() {
   imgUploadOverlay.classList.remove('hidden');
   document.querySelector('body').classList.add('modal-open');
-  buttonCloseForm.addEventListener('click', closeForm);
 };
 
+buttonCloseForm.addEventListener('click', closeForm);
 imgUploadLabel.addEventListener('click', openPhotoEditForm);
 
 // подлключение валидации с Pristine
@@ -91,3 +91,5 @@ formImgUpload.addEventListener('submit', (evt) => {
   evt.preventDefault();
   pristine.validate();
 });
+
+export {inputDescription, inputHashtag, inputIdUploadFile, imgUploadOverlay};
