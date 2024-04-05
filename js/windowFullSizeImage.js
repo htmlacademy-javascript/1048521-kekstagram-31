@@ -1,4 +1,5 @@
 import {arrayObjectsWithPhotos} from './data.js';
+import {inputDescription, inputHashtag, inputIdUploadFile, imgUploadOverlay} from './formUser.js';
 
 const pictures = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
@@ -94,5 +95,16 @@ document.addEventListener('keydown', (evt) => {
     evt.preventDefault();
     bigPicture.classList.add('hidden');
     socialComments.innerHTML = '';
+
+    if(evt.target === inputHashtag) {
+      return;
+    } else {
+      imgUploadOverlay.classList.add('hidden');
+      inputIdUploadFile.value = '';
+    }
+    if(evt.target === inputDescription) {
+      imgUploadOverlay.classList.add('hidden');
+      inputIdUploadFile.value = '';
+    }
   }
 });
