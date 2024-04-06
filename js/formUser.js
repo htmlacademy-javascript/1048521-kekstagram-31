@@ -92,4 +92,32 @@ formImgUpload.addEventListener('submit', (evt) => {
   pristine.validate();
 });
 
+
+const btnSmaller = formImgUpload.querySelector('.scale__control--smaller');
+const btnBigger = formImgUpload.querySelector('.scale__control--bigger');
+const inputScaleControlValue = formImgUpload.querySelector('.scale__control--value');
+const resizableImage = formImgUpload.querySelector('.img-upload__preview img');
+
+const step = 0.25;
+let scale = 1;
+
+btnSmaller.addEventListener('click', () => {
+  if(scale > step) {
+    scale -= step;
+    console.log(scale);
+    resizableImage.style.transform = `scale(${scale})`;
+    inputScaleControlValue.value = `${scale * 100}%`;
+  }
+});
+
+btnBigger.addEventListener('click', () => {
+  console.log(scale);
+  if(scale < 1) {
+    scale += step;
+    console.log(scale);
+    resizableImage.style.transform = `scale(${scale})`;
+    inputScaleControlValue.value = `${scale * 100}%`;
+  }
+});
+
 export {inputDescription, inputHashtag, inputIdUploadFile, imgUploadOverlay};
