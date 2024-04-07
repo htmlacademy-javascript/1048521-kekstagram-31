@@ -19,7 +19,7 @@ const openPhotoEditForm = function() {
 };
 
 buttonCloseForm.addEventListener('click', closeForm);
-imgUploadLabel.addEventListener('change', openPhotoEditForm);
+imgUploadLabel.addEventListener('click', openPhotoEditForm);
 
 // подлключение валидации с Pristine
 
