@@ -13,25 +13,13 @@ const closeForm = function() {
   inputIdUploadFile.value = '';
 };
 
-document.addEventListener('keydown', (evt) => {
-  if (evt.key === 'Escape') {
-    if(evt.target === inputHashtag) {
-      return;
-    }
-    if(evt.target === inputDescription) {
-      return;
-    }
-    closeForm();
-  }
-});
-
 const openPhotoEditForm = function() {
   imgUploadOverlay.classList.remove('hidden');
   document.querySelector('body').classList.add('modal-open');
 };
 
 buttonCloseForm.addEventListener('click', closeForm);
-imgUploadLabel.addEventListener('click', openPhotoEditForm);
+imgUploadLabel.addEventListener('change', openPhotoEditForm);
 
 // подлключение валидации с Pristine
 
@@ -92,4 +80,52 @@ formImgUpload.addEventListener('submit', (evt) => {
   pristine.validate();
 });
 
-export {inputDescription, inputHashtag, inputIdUploadFile, imgUploadOverlay};
+// изменение масштаба картинки
+
+const btnSmaller = formImgUpload.querySelector('.scale__control--smaller');
+const btnBigger = formImgUpload.querySelector('.scale__control--bigger');
+const inputScaleControlValue = formImgUpload.querySelector('.scale__control--value');
+const resizableImage = formImgUpload.querySelector('.img-upload__preview img');
+
+const step = 25;
+let scale = 100;
+
+btnSmaller.addEventListener('click', () => {
+  if(scale > step) {
+    scale -= 25;
+    resizableImage.style.transform = `scale(${scale / 100})`;
+    inputScaleControlValue.value = `${scale}%`;
+  }
+});
+
+btnBigger.addEventListener('click', () => {
+  if(scale < 100) {
+    scale += 25;
+    resizableImage.style.transform = `scale(${scale / 100})`;
+    inputScaleControlValue.value = `${scale}%`;
+  }
+});
+
+// изменение эффекта изображения
+
+const slider = formImgUpload.querySelector('.effect-level__slider');
+const effectLevelValue = formImgUpload.querySelector('.effect-level__value');
+// const inputsEffect = formImgUpload.querySelectorAll('.effects__radio');
+// const imgEffectLevel = formImgUpload.querySelector('.img-upload__effect-level');
+// const effectsList = formImgUpload.querySelector('.effects__list');
+
+noUiSlider.create(slider, {
+  connect: 'lower',
+  range: {
+    min: 0,
+    max: 100,
+  },
+  start: 100,
+  step: 1
+});
+
+slider.noUiSlider.on('update', () => {
+  effectLevelValue.value = slider.noUiSlider.get();
+});
+
+export {inputDescription, inputHashtag, closeForm};

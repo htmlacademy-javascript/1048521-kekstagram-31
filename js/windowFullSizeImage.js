@@ -1,5 +1,5 @@
 import {arrayObjectsWithPhotos} from './data.js';
-import {inputDescription, inputHashtag, inputIdUploadFile, imgUploadOverlay} from './formUser.js';
+import {inputDescription, inputHashtag, closeForm} from './formUser.js';
 
 const pictures = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
@@ -92,19 +92,11 @@ closeButton.addEventListener('click', closePopupBigPicture);
 
 document.addEventListener('keydown', (evt) => {
   if (evt.key === 'Escape') {
-    evt.preventDefault();
-    bigPicture.classList.add('hidden');
     socialComments.innerHTML = '';
-
-    if(evt.target === inputHashtag) {
+    bigPicture.classList.add('hidden');
+    if(evt.target === inputHashtag || evt.target === inputDescription) {
       return;
-    } else {
-      imgUploadOverlay.classList.add('hidden');
-      inputIdUploadFile.value = '';
     }
-    if(evt.target === inputDescription) {
-      imgUploadOverlay.classList.add('hidden');
-      inputIdUploadFile.value = '';
-    }
+    closeForm();
   }
 });
